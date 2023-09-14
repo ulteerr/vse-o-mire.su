@@ -1,0 +1,12 @@
+{
+	"name": "ulterr/vse-o-mire",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "APP_ENV=development vite",
+		"build": "vite build"
+	},
+	"devDependencies": {
+        "laravel-vite-plugin": "^0.7.2",
+        "vite": "^4.1.4"
+	}
+}

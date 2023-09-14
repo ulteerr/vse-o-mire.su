@@ -1,0 +1,12 @@
+{
+	"name": "ulterr/vse-o-mire",
+	"description": "Description of your project",
+	"autoload": {
+		"psr-4": {
+			"app\\": "app/"
+		}
+	},
+	"require": {
+		"fzaninotto/faker": "^1.5"
+	}
+}
