@@ -1,7 +1,8 @@
 <?php
+
 return [
-	'host' => 'localhost',
-	'dbname' => 'vse-o-mire',
-	'user' => 'admin',
-	'password' => '1234',
+	'host' => $_ENV['DB_HOST'],
+	'dbname' => $_ENV['DB_NAME'],
+	'user' => $_ENV['DB_USER'],
+	'password' => $_ENV['DB_PASSWORD'],
 ];

@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\lib\WebPack;
+
 class View
 {
 	public $path;
@@ -28,6 +30,15 @@ class View
 			ob_start();
 			require $path;
 			$content = ob_get_clean();
+			$webPack = new WebPack();
+
+			$jsonConfig =  base_path() . '/webpack/webpack.config.json';
+			if (file_exists($jsonConfig)) {
+				$config = file_get_contents($jsonConfig);
+				$config = json_decode($config, true);
+				$port = $config['devServer']['port'] ?? null;
+			}
+			$script = $webPack->getScriptTag($GLOBALS['webpackconfig']['output']['filename'], $GLOBALS['webpackconfig']['plugins']['MiniCssExtractPlugin']['filename']);
 			require $this->base_layout;
 		}
 	}

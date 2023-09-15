@@ -1,0 +1,42 @@
+{
+	"url": "http://vse-o-mire.su/",
+	"entry": "./resources/js/app.js",
+	"output": {
+		"filename": "assets/js/main.js",
+		"path": "public"
+	},
+	"plugins": {
+		"BrowserSyncPlugin": {
+			"host": "localhost",
+			"port": 3000,
+			"files": [
+				"app/**/*.php",
+				"public/index.php",
+				"resources/**/**"
+			]
+		},
+		"CleanWebpackPlugin": {
+			"cleanOnceBeforeBuildPatterns": [
+				"assets"
+			]
+		},
+		"MiniCssExtractPlugin": {
+			"filename": "assets/css/style.css"
+		}
+	},
+	"devServer": {
+		"static": {
+			"directory": "public"
+		},
+		"watchFiles": {
+			"options": {
+				"usePolling": true,
+				"interval": 1000
+			},
+			"paths": [
+				"app/**/*"
+			]
+		},
+		"port": 9000
+	}
+}

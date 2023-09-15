@@ -1,8 +1,10 @@
 <?php
-function dd($str)
+function dd()
 {
-	echo '<pre>';
-	var_dump($str);
-	echo '</pre>';
-	exit;
+	foreach (func_get_args() as $arg) {
+		echo '<pre>';
+		var_dump($arg);
+		echo '</pre>';
+	}
+	die;
 }

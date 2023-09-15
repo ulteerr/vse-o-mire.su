@@ -11,7 +11,7 @@ class Db
 
 	public function __construct()
 	{
-		$config = require base_path() . '/app/config/db.php';
+		$config = config('db');
 		try {
 			$this->db = new PDO("mysql:host={$config['host']};dbname={$config['dbname']}", $config['user'], $config['password']);
 		} catch (PDOException $e) {

@@ -1,1 +1,1 @@
-console.log(934323)
+import '../scss/app.scss';
