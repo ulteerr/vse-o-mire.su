@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 $directory = __DIR__ . '/function/';
 
 foreach (scandir($directory) as $filename) {
@@ -14,4 +11,12 @@ foreach (scandir($directory) as $filename) {
 
 require base_path() . '/vendor/autoload.php';
 require 'env.php';
+
+if ($_ENV['APP_DEBUG']) {
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL);
+}
+
+set_error_handler('errorHandler');
+
 require 'global_vars.php';
