@@ -17,7 +17,7 @@ class Router
 
 	public function add($route, $params)
 	{
-		$route = '#^' . $route . '$#';
+		$route = '#^' . $route . '(\?|$)#';
 		$this->routes[$route] = $params;
 	}
 
@@ -28,10 +28,20 @@ class Router
 			$url = trim($_SERVER['REQUEST_URI'], '/');
 		}
 		foreach ($this->routes as $route => $params) {
+			$urlParts = explode('/', $url);
+			foreach ($urlParts as $key => $part) {
+				if ($key === 0) {
+
+					continue;
+				} else {
+				}
+				$params['param'][$key] = $part;
+				$route = preg_replace('/\{[^\}]+\}/', $part, $route);
+			}
 			if (preg_match($route, $url, $matches)) {
 				$this->params = $params;
 				return true;
-			};
+			}
 		}
 		return false;
 	}
@@ -48,7 +58,12 @@ class Router
 					$action = $this->params['action'];
 					if (method_exists($controller_сlass, $action)) {
 						$controller = new $controller_сlass($this->params);
-						$controller->$action();
+						if (isset($this->params['param'])) {
+							$params = $this->params['param'];
+							$controller->$action(...$params);
+						} else {
+							$controller->$action();
+						}
 					} else {
 						$view->errorCode('404');
 					}

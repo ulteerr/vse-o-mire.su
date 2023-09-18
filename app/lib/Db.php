@@ -36,7 +36,6 @@ class Db
 	{
 		$result = $this->query($sql, $params);
 		return $result->fetchAll(PDO::FETCH_ASSOC);
-		// return $result->fetchAll();
 	}
 	public function column($sql, $params = [])
 	{

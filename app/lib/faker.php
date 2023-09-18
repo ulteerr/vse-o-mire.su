@@ -8,8 +8,8 @@ use app\database\faker\RoleFaker;
 
 require 'require.php';
 
-// RoleFaker::run();
-// UserFaker::run();
-// ArticleFaker::run();
+RoleFaker::run();
+UserFaker::run();
+ArticleFaker::run();
 CommentFaker::run();
 RepliesFaker::run();

@@ -8,7 +8,7 @@ class Main extends Model
 {
 	public function getArticles()
 	{
-		$result = $this->db->row('SELECT `id`, `content` FROM articles');
+		$result = $this->db->row('SELECT * FROM `articles` ORDER BY `id` DESC LIMIT 6');
 		return $result;
 	}
 }

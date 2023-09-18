@@ -7,6 +7,13 @@ class Log
 	private static $channels = [];
 	private static $config;
 
+	private $channelName;
+
+	private function __construct($channelName)
+	{
+		$this->channelName = $channelName;
+	}
+
 	public static function channel($channelName)
 	{
 		if (!isset(self::$channels[$channelName])) {
@@ -16,12 +23,6 @@ class Log
 		return self::$channels[$channelName];
 	}
 
-	private $channelName;
-
-	private function __construct($channelName)
-	{
-		$this->channelName = $channelName;
-	}
 
 	public function info($message)
 	{
@@ -44,10 +45,10 @@ class Log
 			mkdir($logDirectory, 0755, true);
 		}
 		if (!file_exists($logFile)) {
-            touch($logFile);
-        }
+			touch($logFile);
+		}
 		$file = fopen($logFile, 'a');
-		
+
 		if ($file) {
 			fwrite($file, $logMessage . PHP_EOL);
 			fclose($file);

@@ -8,6 +8,7 @@ function up()
             id INT PRIMARY KEY AUTO_INCREMENT,
             user_id INT NOT NULL,
             title VARCHAR(255) NOT NULL,
+            slug VARCHAR(255) NOT NULL,
             content LONGTEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 			image_path VARCHAR(255) DEFAULT NULL,
