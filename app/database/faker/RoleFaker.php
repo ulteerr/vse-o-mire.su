@@ -2,7 +2,7 @@
 
 namespace app\database\faker;
 
-use app\lib\Db;
+use app\lib\common\Db;
 
 class RoleFaker
 {

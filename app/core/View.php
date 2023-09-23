@@ -2,7 +2,7 @@
 
 namespace app\core;
 
-use app\lib\WebPack;
+use app\lib\common\WebPack;
 
 class View
 {

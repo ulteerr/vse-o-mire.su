@@ -1,4 +1,24 @@
+### Установка редис
+	https://www.dmosk.ru/miniinstruktions.php?mini=redis-ubuntu
+
+	apt-get update
+
+	apt-get install redis-server
+
+	nano /etc/redis/redis.conf
+	Меняем значение для директивы supervised:
+	supervised systemd
+
+	systemctl enable redis-server
+
+	systemctl restart redis-server
+
+	nano /etc/redis/redis.conf
+
 ### start
+
+	sudo apt-get install php-igbinary
+	sudo apt-get install php-redis
 
 	run composer install
 	run npm i

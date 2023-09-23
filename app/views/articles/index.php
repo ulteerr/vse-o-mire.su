@@ -11,7 +11,7 @@
 					<p class="card-text"><?= $article['content'] ?></p>
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group">
-							<button type="button" class="btn btn-sm btn-outline-secondary">Смотреть</button>
+							<a href="<?=route('articles.show', ['show' => $article['slug']])?>" type="button" class="btn btn-sm btn-outline-secondary">Смотреть</a>
 						</div>
 						<small class="text-muted">9 mins</small>
 					</div>

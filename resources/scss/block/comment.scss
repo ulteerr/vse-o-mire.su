@@ -1,0 +1,15 @@
+.comment {
+	margin: 20px 0;
+	border: 1px solid #ddd;
+	padding: 10px;
+	&-data {
+		color: #777;
+	}
+	&-content {
+		margin-top: 10px;
+	}
+	&-header {
+		display: flex;
+		align-items: center;
+	}
+}

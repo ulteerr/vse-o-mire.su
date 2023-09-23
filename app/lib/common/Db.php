@@ -1,6 +1,6 @@
 <?php
 
-namespace app\lib;
+namespace app\lib\common;
 
 use PDO;
 use PDOException;
@@ -21,11 +21,14 @@ class Db
 
 	public function query($sql, $params = [])
 	{
-
 		$stmt = $this->db->prepare($sql);
 		if ($stmt) {
 			foreach ($params as $key => $value) {
-				$stmt->bindValue(':' . $key, $value);
+				if (strpos($key, 'limit') !== false || strpos($key, 'offset') !== false || strpos($key, 'perPage') !== false) {
+					$stmt->bindValue(':' . $key, $value, PDO::PARAM_INT);
+				} else {
+					$stmt->bindValue(':' . $key, $value);
+				}
 			}
 		}
 		$stmt->execute();

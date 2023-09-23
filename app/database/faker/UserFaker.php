@@ -2,8 +2,9 @@
 
 namespace app\database\faker;
 
+use app\lib\common\Db;
 use Faker\Factory;
-use app\lib\Db;
+
 
 class UserFaker
 {

@@ -1,8 +1,9 @@
 <?php
 
+use app\lib\common\Db;
+
 require 'require.php';
 
-use app\lib\Db;
 
 $pdo = new Db;
 

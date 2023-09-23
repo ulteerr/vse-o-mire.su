@@ -33,8 +33,9 @@ class Router
 				if ($key === 0) {
 
 					continue;
-				} else {
 				}
+				$part = explode('?', $part, 2);
+				$part = $part[0];
 				$params['param'][$key] = $part;
 				$route = preg_replace('/\{[^\}]+\}/', $part, $route);
 			}
