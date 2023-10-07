@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\lib\common\Pagination;
 use app\lib\common\RedisHelper;
 
 class ArticlesController extends Controller
@@ -27,8 +28,8 @@ class ArticlesController extends Controller
 	}
 	public function show($slug)
 	{
-		$page = isset($_GET['page']) ? (int)$_GET['page'] : 2;
-		$perPage = 10;
+		$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+		$perPage = 5;
 		$offset = max(($page - 1) * $perPage, 0);
 		$offset = ($page - 1) * $perPage;
 
@@ -51,11 +52,14 @@ class ArticlesController extends Controller
 
 				$data['article'] = $article;
 				$data['comments'] = $comments;
+				$data['count_comments'] = count($comments);
 				$redisHelper->set($redis_key, serialize($data));
 			} else {
 				$this->view->errorCode('404');
 			}
 		}
+		$pagination = new Pagination($data['count_comments'], $perPage);
+		$data['pagination'] = $pagination;
 		if (!empty($data)) {
 			$data['comments'] = array_slice($data['comments'], $offset, $perPage);
 			$this->view->render('Страница статьи', $data);

@@ -2,8 +2,6 @@
 
 	<h1><?= $article['title'] ?></h1>
 	<p><?= $article['content'] ?></p>
-
-	<!-- Форма для добавления комментариев -->
 	<form id="commentForm">
 		<div class="mb-3">
 			<label for="commentName" class="form-label">Имя</label>
@@ -17,28 +15,33 @@
 	</form>
 
 	<div class="container">
-		<h3>Комментарии</h3>
-		<div class="comment">
-			<div class="comment-header">
-				<img src="user_avatar.jpg" alt="User Avatar" class="avatar">
-				<h5 class="user-name">Имя пользователя</h5>
-				<span class="comment-date">Дата публикации</span>
+		<h2>Комментарии</h2>
+		<?php foreach ($comments as $comment) : ?>
+			<div class="comment">
+				<div class="comment-header">
+					<img src="user_avatar.jpg" alt="User Avatar" class="avatar">
+					<h5 class="user-name"><?= $comment['user']['username'] ?></h5>
+					<span class="comment-date">Дата публикации</span>
+				</div>
+				<div class="comment-content">
+					<p><?= $comment['content'] ?></p>
+				</div>
+				<?php if (count($comment['replies']) < 10) : ?>
+					<button class="btn btn-primary reply-btn">Ответить</button>
+				<?php endif ?>
 			</div>
-			<div class="comment-content">
-				<p>Содержание комментария</p>
-			</div>
-			<button class="btn btn-primary reply-btn">Ответить</button>
-		</div>
-		<div class="comment reply-comment">
-			<div class="comment-header">
-				<img src="user_avatar.jpg" alt="User Avatar" class="avatar">
-				<h5 class="user-name">Имя пользователя</h5>
-				<span class="comment-date">Дата публикации</span>
-			</div>
-			<div class="comment-content">
-				<p>Содержание вложенного комментария</p>
-			</div>
-			<button class="btn btn-primary reply-btn">Ответить</button>
-		</div>
-		<?php include_view('includes.pagination', ['breadcrumbs' => 1]);?>
+			<?php foreach ($comment['replies'] as $reply) : ?>
+				<div class="comment reply-comment">
+					<div class="comment-header">
+						<img src="user_avatar.jpg" alt="User Avatar" class="avatar">
+						<h5 class="user-name"><?= $reply['user']['username'] ?></h5>
+						<span class="comment-date">Дата публикации</span>
+					</div>
+					<div class="comment-content">
+						<p><?= $reply['content'] ?></p>
+					</div>
+				</div>
+			<?php endforeach ?>
+		<?php endforeach ?>
+		<?= $pagination->generateLinks() ?>
 	</div>
